@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/home_fragment">
+
+    <fragment
+        android:id="@+id/home_fragment"
+        android:name="com.sun.weatherapp.screen.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/broadcast_fragment"
+        android:name="com.sun.weatherapp.screen.broadcast.BroadcastFragment"
+        android:label="Broadcast"
+        tools:layout="@layout/fragment_broadcast" />
+
+    <fragment
+        android:id="@+id/music_fragment"
+        android:name="com.sun.weatherapp.screen.music.MusicFragment"
+        android:label="Music"
+        tools:layout="@layout/fragment_music" />
+
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="com.sun.weatherapp.screen.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profile_fragment_to_sample_mvp_fragment"
+            app:destination="@id/sample_mvp_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/sample_mvp_fragment"
+        android:name="com.sun.weatherapp.screen.example.SampleFragment"
+        android:label="Sample MVP"
+        tools:layout="@layout/fragment_sample"
+        />
+
+</navigation>
