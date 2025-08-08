@@ -4,6 +4,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -61,4 +62,10 @@ dependencies {
     val navigation_version = "2.7.0"
     implementation("androidx.navigation:navigation-fragment-ktx:$navigation_version")
     implementation("androidx.navigation:navigation-ui-ktx:$navigation_version")
+
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.0.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-auth")
 }
