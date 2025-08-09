@@ -61,4 +61,7 @@ dependencies {
     val navigation_version = "2.7.0"
     implementation("androidx.navigation:navigation-fragment-ktx:$navigation_version")
     implementation("androidx.navigation:navigation-ui-ktx:$navigation_version")
+
+    // Location services
+    implementation("com.google.android.gms:play-services-location:21.3.0")
 }

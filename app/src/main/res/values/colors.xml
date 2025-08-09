@@ -2,4 +2,15 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    
+    <!-- Weather App Colors -->
+    <color name="purple_gradient_start">#8B5CF6</color>
+    <color name="purple_gradient_end">#6D28D9</color>
+    <color name="card_background">#F8FAFC</color>
+    <color name="text_primary">#1E293B</color>
+    <color name="text_secondary">#64748B</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="weather_card_bg">#E2E8F0</color>
+    <color name="icon_tint">#6B7280</color>
+    <color name="background">#F6EDFF</color>
 </resources>

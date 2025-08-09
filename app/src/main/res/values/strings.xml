@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">WeatherApp</string>
+    
+    <!-- Weather Screen -->
+    <string name="location">Hà Nội, Việt Nam</string>
+    <string name="weather_condition">Mây</string>
+    <string name="feels_like">Cảm nhận</string>
+    <string name="weather_details">Các thông số thời tiết</string>
+    <string name="wind_speed">Tốc độ gió</string>
+    <string name="pressure">Áp suất</string>
+    <string name="humidity">Khả năng mưa</string>
+    <string name="uv_index">Chỉ số UV</string>
+    
+    <!-- Units -->
+    <string name="kmh">km/h</string>
+    <string name="hpa">hpa</string>
+    <string name="percent">%</string>
+    
+    <!-- Time -->
+    <string name="day_night_format">Ngày %1$s° Đêm %2$s°</string>
+    <string name="time_format">%1$s, %2$s</string>
 </resources>
