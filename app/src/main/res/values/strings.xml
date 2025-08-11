@@ -19,4 +19,41 @@
     <!-- Time -->
     <string name="day_night_format">Ngày %1$s° Đêm %2$s°</string>
     <string name="time_format">%1$s, %2$s</string>
+    
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_broadcast">Broadcast</string>
+    <string name="nav_music">Music</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_sample_mvp">Sample MVP</string>
+    
+    <!-- Sample Activity -->
+    <string name="sample_load_teams_button">Load My Teams</string>
+    
+    <!-- Broadcast Fragment -->
+    <string name="broadcast_title">Broadcast</string>
+    
+    <!-- Music Fragment -->
+    <string name="music_title">Music</string>
+    
+    <!-- Profile Fragment -->
+    <string name="profile_navigate_sample_mvp">Navigate to Sample MVP</string>
+    <string name="profile_navigate_sample_api">Navigate to Sample API</string>
+    
+    <!-- Home Fragment -->
+    <string name="home_current_location">Hà Nội, Việt Nam</string>
+    <string name="home_current_temperature">3°</string>
+    <string name="home_feels_like_temperature">Cảm nhận -2°</string>
+    <string name="home_weather_condition">Mây</string>
+    <string name="home_current_time">16:14, 11/03/2025</string>
+    <string name="home_day_temperature">Ngày 3°</string>
+    <string name="home_night_temperature">Đêm -1°</string>
+    <string name="home_wind_speed_value">12km/h</string>
+    <string name="home_wind_speed_change">2 km/h</string>
+    <string name="home_pressure_value">720 hpa</string>
+    <string name="home_pressure_change">22 hpa</string>
+    <string name="home_humidity_value">24%</string>
+    <string name="home_humidity_change">10%</string>
+    <string name="home_uv_index_value">2,3</string>
+    <string name="home_uv_index_change">0,3</string>
 </resources>

@@ -4,17 +4,17 @@
     <item
         android:id="@+id/home_fragment"
         android:icon="@drawable/ic_home"
-        android:title="Home" />
+        android:title="@string/nav_home" />
     <item
         android:id="@+id/broadcast_fragment"
         android:icon="@drawable/ic_broadcast"
-        android:title="Broadcast" />
+        android:title="@string/nav_broadcast" />
     <item
         android:id="@+id/music_fragment"
         android:icon="@drawable/ic_headphone"
-        android:title="Music" />
+        android:title="@string/nav_music" />
     <item
         android:id="@+id/profile_fragment"
         android:icon="@drawable/ic_profile"
-        android:title="Profile" />
+        android:title="@string/nav_profile" />
 </menu>

@@ -10,12 +10,12 @@
         android:id="@+id/btnSampleMVP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Navigate to Sample MVP" />
+        android:text="@string/profile_navigate_sample_mvp" />
 
     <Button
         android:id="@+id/btnSampleAPI"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Navigate to Sample API" />
+        android:text="@string/profile_navigate_sample_api" />
 
 </LinearLayout>

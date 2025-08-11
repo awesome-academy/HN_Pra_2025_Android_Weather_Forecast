@@ -8,25 +8,25 @@
     <fragment
         android:id="@+id/home_fragment"
         android:name="com.sun.weatherapp.screen.home.HomeFragment"
-        android:label="Home"
+        android:label="@string/nav_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/broadcast_fragment"
         android:name="com.sun.weatherapp.screen.broadcast.BroadcastFragment"
-        android:label="Broadcast"
+        android:label="@string/nav_broadcast"
         tools:layout="@layout/fragment_broadcast" />
 
     <fragment
         android:id="@+id/music_fragment"
         android:name="com.sun.weatherapp.screen.music.MusicFragment"
-        android:label="Music"
+        android:label="@string/nav_music"
         tools:layout="@layout/fragment_music" />
 
     <fragment
         android:id="@+id/profile_fragment"
         android:name="com.sun.weatherapp.screen.profile.ProfileFragment"
-        android:label="Profile"
+        android:label="@string/nav_profile"
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_profile_fragment_to_sample_mvp_fragment"
@@ -36,7 +36,7 @@
     <fragment
         android:id="@+id/sample_mvp_fragment"
         android:name="com.sun.weatherapp.screen.example.SampleFragment"
-        android:label="Sample MVP"
+        android:label="@string/nav_sample_mvp"
         tools:layout="@layout/fragment_sample"
         />
 
