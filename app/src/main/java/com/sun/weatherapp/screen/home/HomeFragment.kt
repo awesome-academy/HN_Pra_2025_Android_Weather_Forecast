@@ -37,15 +37,4 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
 
     override fun showCurrentWeather() {
     }
-
-    override fun showLoading() {
-    }
-
-    override fun hideLoading() {
-    }
-
-    override fun showError(message: String) {
-    }
-
-
 }
