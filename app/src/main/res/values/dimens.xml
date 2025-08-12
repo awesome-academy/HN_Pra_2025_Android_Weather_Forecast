@@ -20,4 +20,41 @@
     <dimen name="weather_card_height">300dp</dimen>
     <dimen name="icon_size_small">20dp</dimen>
     <dimen name="icon_size_medium">24dp</dimen>
+
+    <dimen name="af_util_common_zero">0dp</dimen>
+
+    <dimen name="af_util_margin_padding_ultra_tiny">1dp</dimen>
+    <dimen name="af_util_margin_padding_extreme_tiny">2dp</dimen>
+    <dimen name="af_util_margin_padding_tiny">4dp</dimen>
+    <dimen name="af_util_margin_padding_tiny_larger">6dp</dimen>
+    <dimen name="af_util_margin_padding_small">8dp</dimen>
+    <dimen name="af_util_margin_padding_small_larger">10dp</dimen>
+    <dimen name="af_util_margin_padding_default_smaller">12dp</dimen>
+    <dimen name="af_util_margin_padding_default_smaller_tiny">14dp</dimen>
+    <dimen name="af_util_margin_padding_default">16dp</dimen>
+    <dimen name="af_util_margin_padding_default_larger">20dp</dimen>
+    <dimen name="af_util_margin_padding_medium">24dp</dimen>
+    <dimen name="af_util_margin_padding_large">32dp</dimen>
+    <dimen name="af_util_margin_padding_larger">40dp</dimen>
+    <dimen name="af_util_margin_padding_huge">48dp</dimen>
+    <dimen name="af_util_margin_padding_ultra">64dp</dimen>
+
+    <dimen name="af_util_radius_extra">20dp</dimen>
+
+    <dimen name="af_util_text_size_gigantic">36sp</dimen>
+    <dimen name="af_util_text_size_large">24sp</dimen>
+    <dimen name="af_util_text_size_medium">20sp</dimen>
+    <dimen name="af_util_text_size_title">16sp</dimen>
+    <dimen name="af_util_text_size_normal">14sp</dimen>
+    <dimen name="af_util_text_size_default_smaller">12sp</dimen>
+    <dimen name="af_util_text_size_tiny_larger">11sp</dimen>
+    <dimen name="af_util_text_size_tiny_medium">10sp</dimen>
+    <dimen name="af_util_text_size_tiny">7sp</dimen>
+    <dimen name="af_util_text_size_extreme_tiny">6sp</dimen>
+    <dimen name="af_util_text_size_ultra_tiny">4sp</dimen>
+
+    <dimen name="af_util_header_height">56dp</dimen>
+    <dimen name="af_util_header_height_small">48dp</dimen>
+    <dimen name="af_util_footer_height">72dp</dimen>
+
 </resources>
