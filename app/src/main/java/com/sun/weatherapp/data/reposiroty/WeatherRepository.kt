@@ -9,8 +9,8 @@ class WeatherRepository private constructor(
     private val local: WeatherDataSource.Local
 ) : WeatherDataSource.Local, WeatherDataSource.Remote {
 
-    override fun getCurrentWeather(listener: OnResultListener<WeatherResponse>) {
-        remote.getCurrentWeather(listener)
+    override fun getCurrentWeather(lat: Double, lon: Double, listener: OnResultListener<WeatherResponse>) {
+        remote.getCurrentWeather(lat, lon, listener)
     }
 
     companion object {

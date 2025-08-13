@@ -6,7 +6,7 @@ import com.sun.weatherapp.data.reposiroty.source.remote.OnResultListener
 
 class WeatherLocalDataSource : WeatherDataSource.Local {
 
-    override fun getCurrentWeather(listener: OnResultListener<WeatherResponse>) {
+    override fun getCurrentWeather(lat: Double, lon: Double, listener: OnResultListener<WeatherResponse>) {
         listener.onError(Exception("Local data source not implemented yet"))
     }
 

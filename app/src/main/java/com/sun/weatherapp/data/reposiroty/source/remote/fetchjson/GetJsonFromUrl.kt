@@ -29,11 +29,21 @@ class GetJsonFromUrl<T> constructor(
 
     private fun callAPI() {
         mExecutor.execute {
-            val responseJson =
-                getJsonStringFromUrl(urlString + Constant.BASE_API_KEY + Constant.BASE_LANGUAGE)
-            data = ParseDataWithJson().parseJsonToData(JSONObject(responseJson), keyEntity) as? T
-            mHandler.post {
-                data?.let { listener.onSuccess(it) }
+            try {
+                val responseJson =
+                    getJsonStringFromUrl(urlString + Constant.BASE_API_KEY + Constant.BASE_LANGUAGE)
+                data = ParseDataWithJson().parseJsonToData(JSONObject(responseJson), keyEntity) as? T
+                mHandler.post {
+                    data?.let { 
+                        listener.onSuccess(it) 
+                    } ?: run {
+                        listener.onError(Exception("Failed to parse response"))
+                    }
+                }
+            } catch (e: Exception) {
+                mHandler.post {
+                    listener.onError(e)
+                }
             }
         }
     }

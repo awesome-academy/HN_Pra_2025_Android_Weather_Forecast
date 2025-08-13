@@ -4,6 +4,7 @@ import com.sun.mvp.data.repository.source.remote.fetchjson.GetJsonFromUrl
 import com.sun.weatherapp.data.model.WeatherEntry
 import com.sun.weatherapp.data.model.WeatherResponse
 import com.sun.weatherapp.data.reposiroty.source.WeatherDataSource
+import com.sun.weatherapp.utils.Constant
 
 class WeatherRemoteDataSource : WeatherDataSource.Remote {
 
@@ -15,9 +16,10 @@ class WeatherRemoteDataSource : WeatherDataSource.Remote {
         }
     }
 
-    override fun getCurrentWeather(listener: OnResultListener<WeatherResponse>) {
+    override fun getCurrentWeather(lat: Double, lon: Double, listener: OnResultListener<WeatherResponse>) {
+        val url = "${Constant.CURRENT_WEATHER_ENDPOINT}?lat=$lat&lon=$lon"
         GetJsonFromUrl(
-            urlString = "https://api.openweathermap.org/data/2.5/weather",
+            urlString = url,
             keyEntity = WeatherEntry.WEATHER,
             listener = listener
         )

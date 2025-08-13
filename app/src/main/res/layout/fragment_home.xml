@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:backgroundTint="@color/card_background">
+    android:layout_height="match_parent">
+
+    <!-- Skeleton Loading Layout -->
+    <include
+        android:id="@+id/skeletonLayout"
+        layout="@layout/skeleton_home_weather"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible" />
+
+    <!-- Main Content with SwipeRefreshLayout -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/card_background">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -221,6 +240,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/home_wind_speed_value"
+                        android:textAlignment="textEnd"
                         android:textColor="@color/text_primary"
                         android:textSize="14sp"
                         android:layout_weight="1"
@@ -273,6 +293,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/home_pressure_value"
+                        android:textAlignment="textEnd"
                         android:textColor="@color/text_primary"
                         android:textSize="14sp"
                         android:layout_weight="1"
@@ -325,6 +346,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/home_humidity_value"
+                        android:textAlignment="textEnd"
                         android:textColor="@color/text_primary"
                         android:textSize="14sp"
                         android:layout_weight="1"
@@ -377,6 +399,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/home_uv_index_value"
+                        android:textAlignment="textEnd"
                         android:textColor="@color/text_primary"
                         android:textSize="14sp"
                         android:layout_weight="1"
@@ -404,4 +427,8 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+        </ScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</FrameLayout>

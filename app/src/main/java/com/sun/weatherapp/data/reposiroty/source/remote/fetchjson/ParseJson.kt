@@ -44,9 +44,9 @@ class ParseJson {
         dt = jsonObject.getLong(WeatherEntry.DT),
         sys = jsonObject.getJSONObject(WeatherEntry.SYS).run {
             Sys(
-                type = getInt(WeatherEntry.TYPE),
-                id = getInt(WeatherEntry.ID),
-                country = getString(WeatherEntry.COUNTRY),
+                type = optInt(WeatherEntry.TYPE, 0).takeIf { has(WeatherEntry.TYPE) },
+                id = optInt(WeatherEntry.ID, 0).takeIf { has(WeatherEntry.ID) },
+                country = optString(WeatherEntry.COUNTRY).takeIf { has(WeatherEntry.COUNTRY) },
                 sunrise = getLong(WeatherEntry.SUNRISE),
                 sunset = getLong(WeatherEntry.SUNSET)
             )

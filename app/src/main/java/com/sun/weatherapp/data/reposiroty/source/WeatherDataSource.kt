@@ -8,13 +8,13 @@ interface WeatherDataSource {
      * Local
      */
     interface Local {
-        fun getCurrentWeather(listener: OnResultListener<WeatherResponse>)
+        fun getCurrentWeather(lat: Double, lon: Double, listener: OnResultListener<WeatherResponse>)
     }
 
     /**
      * Remote
      */
     interface Remote {
-        fun getCurrentWeather(listener: OnResultListener<WeatherResponse>)
+        fun getCurrentWeather(lat: Double, lon: Double, listener: OnResultListener<WeatherResponse>)
     }
 }
