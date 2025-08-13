@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.sun.weatherapp.WeatherApplication
 import com.sun.weatherapp.data.model.WeatherResponse
 import com.sun.weatherapp.databinding.FragmentHomeBinding
 import com.sun.weatherapp.screen.base.BaseFragment
@@ -18,7 +19,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
     }
 
     override fun initializePresenter() {
-        presenter = HomePresenter()
+        val app = WeatherApplication.getInstance()
+        presenter = HomePresenter(
+            weatherRepository = app.weatherRepository,
+            locationRepository = app.locationRepository
+        )
         presenter?.attachView(this)
     }
 
@@ -48,7 +53,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
             tvWindSpeed.text = "${weatherResponse.wind.speed} m/s"
             tvPressure.text = "${weatherResponse.main.pressure} hPa"
             tvHumidity.text = "${weatherResponse.main.humidity}%"
-            // UV index is not available in current weather API
             tvUvIndex.text = "N/A"
         }
 
