@@ -4,43 +4,43 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:padding="12dp"
-    android:layout_marginBottom="12dp"
+    android:padding="@dimen/dp_12"
+    android:layout_marginBottom="@dimen/dp_12"
     android:background="@drawable/weather_card_detail">
 
     <!-- Icon Skeleton -->
     <View
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:layout_width="@dimen/dp_28"
+        android:layout_height="@dimen/dp_28"
         android:background="@drawable/skeleton_shimmer_item"
-        android:layout_marginEnd="12dp" />
+        android:layout_marginEnd="@dimen/dp_12" />
 
     <!-- Label Skeleton -->
     <View
         android:layout_width="0dp"
-        android:layout_height="16dp"
+        android:layout_height="@dimen/dp_16"
         android:layout_weight="1"
         android:background="@drawable/skeleton_shimmer_item"
-        android:layout_marginEnd="12dp" />
+        android:layout_marginEnd="@dimen/dp_12" />
 
     <!-- Value Skeleton -->
     <View
         android:layout_width="80dp"
-        android:layout_height="16dp"
+        android:layout_height="@dimen/dp_16"
         android:background="@drawable/skeleton_shimmer_item"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginEnd="@dimen/dp_8" />
 
     <!-- Change Icon Skeleton -->
     <View
-        android:layout_width="12dp"
-        android:layout_height="12dp"
+        android:layout_width="@dimen/dp_12"
+        android:layout_height="@dimen/dp_12"
         android:background="@drawable/skeleton_shimmer_item"
-        android:layout_marginEnd="4dp" />
+        android:layout_marginEnd="@dimen/dp_4" />
 
     <!-- Change Value Skeleton -->
     <View
         android:layout_width="40dp"
-        android:layout_height="12dp"
+        android:layout_height="@dimen/dp_12"
         android:background="@drawable/skeleton_shimmer_item" />
 
 </LinearLayout>

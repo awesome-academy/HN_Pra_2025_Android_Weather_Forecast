@@ -6,8 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.sun.weatherapp.WeatherApplication
 import com.sun.weatherapp.data.model.WeatherResponse
+import com.sun.weatherapp.data.reposiroty.LocationRepository
+import com.sun.weatherapp.data.reposiroty.WeatherRepository
+import com.sun.weatherapp.data.reposiroty.source.local.LocationLocalDataSource
+import com.sun.weatherapp.data.reposiroty.source.local.WeatherLocalDataSource
+import com.sun.weatherapp.data.reposiroty.source.remote.WeatherRemoteDataSource
 import com.sun.weatherapp.databinding.FragmentHomeBinding
 import com.sun.weatherapp.screen.base.BaseFragment
+import com.sun.weatherapp.utils.toCelsius
 import java.util.Locale
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeContract.View {
@@ -20,31 +26,35 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
 
     override fun initializePresenter() {
         val app = WeatherApplication.getInstance()
+        val locationRepository =  LocationRepository.getInstance(
+            LocationLocalDataSource.getInstance(app.locationService)
+        )
+        val weatherRepository= WeatherRepository.getInstance(
+            WeatherRemoteDataSource.getInstance(),
+            WeatherLocalDataSource.getInstance()
+        )
         presenter = HomePresenter(
-            weatherRepository = app.weatherRepository,
-            locationRepository = app.locationRepository
+            locationRepository,
+            weatherRepository
         )
         presenter?.attachView(this)
     }
 
     override fun setupViews() {
-        // Load weather data when fragment is created
         presenter?.loadCurrentWeather()
     }
 
     override fun setupListeners() {
-        // Setup pull-to-refresh
         binding.swipeRefreshLayout.setOnRefreshListener {
             presenter?.refreshWeather()
         }
     }
 
     override fun showCurrentWeather(weatherResponse: WeatherResponse) {
-        // Update UI with weather data
         binding.apply {
             currentLocation.text = weatherResponse.name.ifEmpty { "Unknown Location" }
-            tvCurrentTemperature.text = "${(weatherResponse.main.temp - 273.15).toInt()}°"
-            tvFeelsLikeTemperature.text = "Feels like ${(weatherResponse.main.feels_like - 273.15).toInt()}°"
+            tvCurrentTemperature.text = "${weatherResponse.main.temp.toCelsius()}°"
+            tvFeelsLikeTemperature.text = "Feels like ${weatherResponse.main.feels_like.toCelsius()}°"
             tvWeather.text = weatherResponse.weather.firstOrNull()?.description?.replaceFirstChar {
                 if (it.isLowerCase()) it.titlecase(
                     Locale.getDefault()
@@ -56,7 +66,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
             tvUvIndex.text = "N/A"
         }
 
-        Log.d("HomeFragment", "Weather data loaded: $weatherResponse")
     }
     
     override fun showSkeletonLoading() {
@@ -64,7 +73,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
             skeletonLayout.root.visibility = View.VISIBLE
             swipeRefreshLayout.visibility = View.GONE
         }
-        Log.d("HomeFragment", "Showing skeleton loading...")
     }
     
     override fun hideSkeletonLoading() {

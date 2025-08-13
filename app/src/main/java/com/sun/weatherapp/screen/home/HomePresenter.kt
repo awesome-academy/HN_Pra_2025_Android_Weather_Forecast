@@ -4,36 +4,34 @@ import android.location.Location
 import com.sun.weatherapp.data.model.WeatherResponse
 import com.sun.weatherapp.data.reposiroty.LocationRepository
 import com.sun.weatherapp.data.reposiroty.WeatherRepository
+import com.sun.weatherapp.data.reposiroty.source.LocationService
+import com.sun.weatherapp.data.reposiroty.source.local.LocationLocalDataSource
+import com.sun.weatherapp.data.reposiroty.source.local.WeatherLocalDataSource
 import com.sun.weatherapp.data.reposiroty.source.remote.OnResultListener
+import com.sun.weatherapp.data.reposiroty.source.remote.WeatherRemoteDataSource
 import com.sun.weatherapp.screen.base.BasePresenter
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class HomePresenter(
+    private val locationRepository: LocationRepository,
     private val weatherRepository: WeatherRepository,
-    private val locationRepository: LocationRepository
 ) : BasePresenter<HomeContract.View>(), HomeContract.Presenter {
 
     override fun loadCurrentWeather() {
-        getView()?.apply {
-            showLoading()
-            showSkeletonLoading()
-        }
+        getView()?.showSkeletonLoading()
         presenterScope.launch {
             fetchWeatherWithCurrentLocation()
-            getView()?.hideLoading()
         }
     }
     
     override fun refreshWeather() {
         getView()?.apply {
-            showLoading()
             setRefreshing(true)
             showSkeletonLoading()
         }
         presenterScope.launch {
             fetchWeatherWithCurrentLocation()
-            getView()?.hideLoading()
         }
     }
     

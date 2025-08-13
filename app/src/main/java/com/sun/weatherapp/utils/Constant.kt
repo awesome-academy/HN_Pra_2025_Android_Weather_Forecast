@@ -10,5 +10,8 @@ object Constant {
     
     // Weather API endpoints
     const val CURRENT_WEATHER_ENDPOINT = "$BASE_URL/weather"
+    
+    // Temperature conversion
+    const val KELVIN_TO_CELSIUS_OFFSET = 273.15
 }
 
