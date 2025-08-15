@@ -4,6 +4,7 @@ import android.os.Handler
 import android.os.Looper
 import com.sun.weatherapp.data.reposiroty.source.remote.OnResultListener
 import com.sun.weatherapp.utils.Constant
+import com.sun.weatherapp.utils.SimpleApiLogger
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -29,18 +30,25 @@ class GetJsonFromUrl<T> constructor(
 
     private fun callAPI() {
         mExecutor.execute {
+            val startTime = System.currentTimeMillis()
+            val fullUrl = urlString + Constant.BASE_API_KEY + Constant.BASE_LANGUAGE
+            
             try {
-                val responseJson =
-                    getJsonStringFromUrl(urlString + Constant.BASE_API_KEY + Constant.BASE_LANGUAGE)
+                val responseJson = getJsonStringFromUrl(fullUrl)
                 data = ParseDataWithJson().parseJsonToData(JSONObject(responseJson), keyEntity) as? T
+                
                 mHandler.post {
                     data?.let { 
                         listener.onSuccess(it) 
                     } ?: run {
-                        listener.onError(Exception("Failed to parse response"))
+                        val error = Exception("Failed to parse response for keyEntity: $keyEntity")
+                        SimpleApiLogger.logError(fullUrl, error, System.currentTimeMillis() - startTime)
+                        listener.onError(error)
                     }
                 }
             } catch (e: Exception) {
+                val duration = System.currentTimeMillis() - startTime
+                SimpleApiLogger.logError(fullUrl, e, duration)
                 mHandler.post {
                     listener.onError(e)
                 }
@@ -50,24 +58,44 @@ class GetJsonFromUrl<T> constructor(
 
     private fun getJsonStringFromUrl(urlString: String): String {
         val url = URL(urlString)
-        val httpURLConnection = url.openConnection() as? HttpURLConnection
-        httpURLConnection?.run {
-            connectTimeout = TIME_OUT
-            readTimeout = TIME_OUT
-            requestMethod = METHOD_GET
-            doOutput = true
-            connect()
-        }
+        val httpURLConnection = url.openConnection() as HttpURLConnection
+        val startTime = System.currentTimeMillis()
+        
+        return try {
+            httpURLConnection.apply {
+                connectTimeout = TIME_OUT
+                readTimeout = TIME_OUT
+                requestMethod = METHOD_GET
+                doOutput = false
+            }
 
-        val bufferedReader = BufferedReader(InputStreamReader(url.openStream()))
-        val stringBuilder = StringBuilder()
-        var line: String?
-        while (bufferedReader.readLine().also { line = it } != null) {
-            stringBuilder.append(line)
+            SimpleApiLogger.logRequest(urlString, METHOD_GET)
+            SimpleApiLogger.logCurl(urlString, METHOD_GET)
+
+            httpURLConnection.connect()
+            
+            val bufferedReader = BufferedReader(InputStreamReader(httpURLConnection.inputStream))
+            val stringBuilder = StringBuilder()
+            var line: String?
+            while (bufferedReader.readLine().also { line = it } != null) {
+                stringBuilder.append(line)
+            }
+            bufferedReader.close()
+            
+            val responseBody = stringBuilder.toString()
+            val duration = System.currentTimeMillis() - startTime
+            
+            SimpleApiLogger.logResponse(urlString, httpURLConnection.responseCode, responseBody, duration)
+            
+            responseBody
+            
+        } catch (e: Exception) {
+            val duration = System.currentTimeMillis() - startTime
+            SimpleApiLogger.logError(urlString, e, duration)
+            throw e
+        } finally {
+            httpURLConnection.disconnect()
         }
-        bufferedReader.close()
-        httpURLConnection?.disconnect()
-        return stringBuilder.toString()
     }
 
     companion object {
