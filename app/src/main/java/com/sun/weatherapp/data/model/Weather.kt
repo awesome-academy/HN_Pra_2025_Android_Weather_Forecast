@@ -73,6 +73,79 @@ data class Sys(
     val sunset: Long
 ) : Parcelable
 
+// OneCall API Wind Data Models
+@Parcelize
+data class WindDetailResponse(
+    val lat: Double,
+    val lon: Double,
+    val timezone: String,
+    val timezone_offset: Int,
+    val current: CurrentWind,
+    val daily: List<DailyWind>
+) : Parcelable
+
+@Parcelize
+data class CurrentWind(
+    val dt: Long,
+    val sunrise: Long,
+    val sunset: Long,
+    val temp: Double,
+    val feels_like: Double,
+    val pressure: Int,
+    val humidity: Int,
+    val dew_point: Double,
+    val uvi: Double,
+    val clouds: Int,
+    val visibility: Int,
+    val wind_speed: Double,
+    val wind_deg: Int,
+    val wind_gust: Double?,
+    val weather: List<Weather>,
+    val rain: Rain?
+) : Parcelable
+
+@Parcelize
+data class DailyWind(
+    val dt: Long,
+    val sunrise: Long,
+    val sunset: Long,
+    val moonrise: Long?,
+    val moonset: Long?,
+    val moon_phase: Double,
+    val summary: String,
+    val temp: DailyTemp,
+    val feels_like: DailyFeelsLike,
+    val pressure: Int,
+    val humidity: Int,
+    val dew_point: Double,
+    val wind_speed: Double,
+    val wind_deg: Int,
+    val wind_gust: Double?,
+    val weather: List<Weather>,
+    val clouds: Int,
+    val pop: Double,
+    val rain: Double?,
+    val uvi: Double
+) : Parcelable
+
+@Parcelize
+data class DailyTemp(
+    val day: Double,
+    val min: Double,
+    val max: Double,
+    val night: Double,
+    val eve: Double,
+    val morn: Double
+) : Parcelable
+
+@Parcelize
+data class DailyFeelsLike(
+    val day: Double,
+    val night: Double,
+    val eve: Double,
+    val morn: Double
+) : Parcelable
+
 object WeatherEntry {
     const val COORD = "coord"
     const val LON = "lon"
@@ -119,6 +192,28 @@ object WeatherEntry {
     const val TIMEZONE = "timezone"
     const val NAME = "name"
     const val COD = "cod"
+    
+    // OneCall API Wind Detail entries
+    const val WIND_DETAIL = "wind_detail"
+    const val CURRENT = "current"
+    const val DAILY = "daily"
+    const val TIMEZONE_OFFSET = "timezone_offset"
+    const val WIND_SPEED = "wind_speed"
+    const val WIND_DEG = "wind_deg"
+    const val WIND_GUST = "wind_gust"
+    const val DEW_POINT = "dew_point"
+    const val UVI = "uvi"
+    const val SUMMARY = "summary"
+    const val MOONRISE = "moonrise"
+    const val MOONSET = "moonset"
+    const val MOON_PHASE = "moon_phase"
+    const val POP = "pop"
+    const val DAY = "day"
+    const val MIN = "min"
+    const val MAX = "max"
+    const val NIGHT = "night"
+    const val EVE = "eve"
+    const val MORN = "morn"
 }
 
 enum class DailyWeatherType {

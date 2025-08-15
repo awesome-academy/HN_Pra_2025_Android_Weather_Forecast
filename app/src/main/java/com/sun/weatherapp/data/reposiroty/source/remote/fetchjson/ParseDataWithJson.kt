@@ -12,6 +12,7 @@ class ParseDataWithJson {
             jsonObject?.notNull {
                 return when (keyEntity) {
                     WeatherEntry.WEATHER -> ParseJson().parseWeatherJson(it)
+                    WeatherEntry.WIND_DETAIL -> ParseJson().parseWindDetailJson(it)
                     else -> null
                 }
             }
