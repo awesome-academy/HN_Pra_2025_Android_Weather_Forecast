@@ -1,6 +1,7 @@
 package com.sun.weatherapp.screen.home
 
 import android.location.Location
+import android.util.Log
 import com.sun.weatherapp.data.model.WeatherResponse
 import com.sun.weatherapp.data.reposiroty.LocationRepository
 import com.sun.weatherapp.data.reposiroty.WeatherRepository
@@ -54,12 +55,14 @@ class HomePresenter(
     private fun fetchWeatherDataWithLocation(latitude: Double, longitude: Double) {
         weatherRepository.getCurrentWeather(latitude, longitude, object : OnResultListener<WeatherResponse> {
             override fun onSuccess(data: WeatherResponse) {
+                Log.d("HomePresenter", "Weather data fetched successfully: ${data}")
                 getView()?.hideSkeletonLoading()
                 getView()?.setRefreshing(false)
                 getView()?.showCurrentWeather(data)
             }
 
             override fun onError(exception: Exception?) {
+                Log.e("HomePresenter", "Error fetching weather data: ${exception?.message}")
                 getView()?.hideSkeletonLoading()
                 getView()?.setRefreshing(false)
                 getView()?.showError(exception?.message ?: "Unknown error occurred")

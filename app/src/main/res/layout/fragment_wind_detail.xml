@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".screen.wind_detail.WindDetailFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="#E2D3FA">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/icBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+                    android:src="@drawable/ic_back"
+                    app:tint="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/icBack"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="Hà Nội, Việt Nam"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="24dp" />
+
+                <ImageView
+                    android:id="@+id/icSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+                    android:src="@drawable/ic_search"
+                    app:tint="@color/black" />
+
+                <ImageView
+                    android:id="@+id/icTemperature"
+                    android:layout_width="@dimen/dp_28"
+                    android:layout_height="@dimen/dp_28"
+                    android:src="@drawable/ic_windy"
+                    android:layout_marginEnd="@dimen/dp_12"
+                    app:layout_constraintStart_toEndOf="@id/icBack"
+                    app:layout_constraintTop_toBottomOf="@id/icBack"
+                    android:padding="@dimen/dp_4"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/ic_bg_white" />
+
+                <TextView
+                    android:id="@+id/tvTemperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/icTemperature"
+                    app:layout_constraintTop_toTopOf="@id/icTemperature"
+                    app:layout_constraintBottom_toBottomOf="@id/icTemperature"
+                    android:textSize="@dimen/sp_16"
+                    android:textColor="@color/black"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="@dimen/dp_0"
+                    android:layout_marginStart="8dp"
+                    android:text="Tốc độ gió" />
+
+                <TextView
+                    android:id="@+id/tvCurrentTemperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/icTemperature"
+                    app:layout_constraintStart_toStartOf="@id/icBack"
+                    android:textSize="42sp"
+                    android:textColor="@color/black"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="@dimen/dp_0"
+                    android:layout_marginTop="8dp"
+                    android:text="16km/h" />
+
+                <ImageView
+                    android:id="@+id/icWeatherIcon"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/icTemperature"
+                    app:layout_constraintBottom_toBottomOf="@id/tvCurrentTemperature"
+                    android:src="@drawable/ic_cloud_and_sun"
+                    android:layout_marginEnd="16dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.sun.weatherapp.screen.widget.ChartView
+                    android:id="@+id/weatherChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/weather_card_detail">
+
+                    <ImageView
+                        android:id="@+id/icCalendar"
+                        android:layout_width="@dimen/dp_28"
+                        android:layout_height="@dimen/dp_28"
+                        android:src="@drawable/ic_windy"
+                        android:padding="@dimen/dp_4"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:background="@drawable/ic_bg_white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toEndOf="@id/icCalendar"
+                        app:layout_constraintTop_toTopOf="@id/icCalendar"
+                        app:layout_constraintBottom_toBottomOf="@id/icCalendar"
+                        android:layout_marginStart="8dp"
+                        android:text="Tóm tắt hàng ngày"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/icCalendar"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:padding="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Gió hiện tại đang thổi với tốc độ 16 km/h từ hướng đông nam. Hôm nay, tốc độ gió dao động từ 5 đến 16 km/h. "
+                        android:background="@drawable/weather_card_background"
+                        />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

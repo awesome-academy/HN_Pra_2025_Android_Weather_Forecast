@@ -9,7 +9,12 @@
         android:id="@+id/home_fragment"
         android:name="com.sun.weatherapp.screen.home.HomeFragment"
         android:label="@string/nav_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_fragment_to_wind_details_fragment"
+            app:destination="@id/wind_details_fragment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/broadcast_fragment"
@@ -61,5 +66,12 @@
         android:name="com.sun.weatherapp.screen.auth.register.RegisterFragment"
         android:label="Register"
         tools:layout="@layout/fragment_register" />
+
+    <fragment
+        android:id="@+id/wind_details_fragment"
+        android:name="com.sun.weatherapp.screen.wind_detail.WindDetailFragment"
+        android:label="Wind Details"
+        tools:layout="@layout/fragment_wind_detail" />
+    />
 
 </navigation>

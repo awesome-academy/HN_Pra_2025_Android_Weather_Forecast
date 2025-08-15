@@ -4,6 +4,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.sun.weatherapp.R
 import com.sun.weatherapp.WeatherApplication
 import com.sun.weatherapp.data.model.WeatherResponse
 import com.sun.weatherapp.data.reposiroty.LocationRepository
@@ -47,6 +49,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
     override fun setupListeners() {
         binding.swipeRefreshLayout.setOnRefreshListener {
             presenter?.refreshWeather()
+        }
+        binding.apply {
+            windSpeedSection.setOnClickListener {
+                findNavController().navigate(
+                    R.id.action_home_fragment_to_wind_details_fragment
+                )
+            }
         }
     }
 
