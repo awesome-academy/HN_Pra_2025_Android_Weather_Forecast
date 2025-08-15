@@ -32,11 +32,11 @@ class GetJsonFromUrl<T> constructor(
         mExecutor.execute {
             val startTime = System.currentTimeMillis()
             val fullUrl = urlString + Constant.BASE_API_KEY + Constant.BASE_LANGUAGE
-            
+
             try {
                 val responseJson = getJsonStringFromUrl(fullUrl)
                 data = ParseDataWithJson().parseJsonToData(JSONObject(responseJson), keyEntity) as? T
-                
+
                 mHandler.post {
                     data?.let { 
                         listener.onSuccess(it) 
@@ -60,7 +60,7 @@ class GetJsonFromUrl<T> constructor(
         val url = URL(urlString)
         val httpURLConnection = url.openConnection() as HttpURLConnection
         val startTime = System.currentTimeMillis()
-        
+
         return try {
             httpURLConnection.apply {
                 connectTimeout = TIME_OUT
@@ -73,7 +73,7 @@ class GetJsonFromUrl<T> constructor(
             SimpleApiLogger.logCurl(urlString, METHOD_GET)
 
             httpURLConnection.connect()
-            
+
             val bufferedReader = BufferedReader(InputStreamReader(httpURLConnection.inputStream))
             val stringBuilder = StringBuilder()
             var line: String?
@@ -81,14 +81,14 @@ class GetJsonFromUrl<T> constructor(
                 stringBuilder.append(line)
             }
             bufferedReader.close()
-            
+
             val responseBody = stringBuilder.toString()
             val duration = System.currentTimeMillis() - startTime
-            
+
             SimpleApiLogger.logResponse(urlString, httpURLConnection.responseCode, responseBody, duration)
-            
+
             responseBody
-            
+
         } catch (e: Exception) {
             val duration = System.currentTimeMillis() - startTime
             SimpleApiLogger.logError(urlString, e, duration)
