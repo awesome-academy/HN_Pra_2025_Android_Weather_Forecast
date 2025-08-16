@@ -1,73 +1,67 @@
 package com.sun.weatherapp.utils
 
-import android.graphics.Bitmap
 import android.widget.ImageView
-import java.io.InputStream
-import java.net.HttpURLConnection
-import java.net.URL
-import android.graphics.BitmapFactory
-import android.os.Handler
-import android.os.Looper
-import java.util.concurrent.Executors
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import android.graphics.drawable.Drawable
 
 object WeatherIconLoader {
     
     private const val ICON_BASE_URL = "http://openweathermap.org/img/w/"
     private const val ICON_EXTENSION = ".png"
     
-    private val iconCache = mutableMapOf<String, Bitmap>()
-    
     /**
-     * Load weather icon từ API và set vào ImageView
      * @param iconCode: mã icon từ API (ví dụ: "01d")
      * @param imageView: ImageView để hiển thị icon
      */
     fun loadWeatherIcon(iconCode: String, imageView: ImageView) {
-        iconCache[iconCode]?.let { cachedBitmap ->
-            imageView.setImageBitmap(cachedBitmap)
-            return
-        }
-        
         val iconUrl = "$ICON_BASE_URL$iconCode$ICON_EXTENSION"
+        val startTime = System.currentTimeMillis()
         
         SimpleApiLogger.logRequest(iconUrl, "GET")
         SimpleApiLogger.logCurl(iconUrl, "GET")
         
-        val executor = Executors.newSingleThreadExecutor()
-        val handler = Handler(Looper.getMainLooper())
-        val startTime = System.currentTimeMillis()
-        
-        executor.execute {
-            try {
-                val url = URL(iconUrl)
-                val connection = url.openConnection() as HttpURLConnection
-                connection.doInput = true
-                connection.connectTimeout = 10000
-                connection.readTimeout = 10000
-                connection.connect()
-                
-                val inputStream: InputStream = connection.inputStream
-                val bitmap = BitmapFactory.decodeStream(inputStream)
-                val duration = System.currentTimeMillis() - startTime
-                
-                bitmap?.let { iconCache[iconCode] = it }
-                SimpleApiLogger.logResponse(iconUrl, connection.responseCode, "Icon loaded successfully", duration)
-                
-                handler.post {
-                    bitmap?.let { imageView.setImageBitmap(it) }
+        Glide.with(imageView.context)
+            .load(iconUrl)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .placeholder(com.sun.weatherapp.R.drawable.ic_cloud_and_sun)
+            .error(com.sun.weatherapp.R.drawable.ic_cloud_and_sun)
+            .listener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    val duration = System.currentTimeMillis() - startTime
+                    SimpleApiLogger.logError(iconUrl, Exception(e?.message ?: "Glide load failed"), duration)
+                    return false
                 }
                 
-                inputStream.close()
-                connection.disconnect()
-                
-            } catch (e: Exception) {
-                val duration = System.currentTimeMillis() - startTime
-                SimpleApiLogger.logError(iconUrl, e, duration)
-                
-                handler.post {
-                    imageView.setImageResource(com.sun.weatherapp.R.drawable.ic_cloud_and_sun)
+                override fun onResourceReady(
+                    resource: Drawable,
+                    model: Any,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    val duration = System.currentTimeMillis() - startTime
+                    val cacheStatus = when(dataSource) {
+                        DataSource.MEMORY_CACHE -> "Memory Cache"
+                        DataSource.RESOURCE_DISK_CACHE -> "Disk Cache"
+                        DataSource.DATA_DISK_CACHE -> "Data Cache"
+                        DataSource.REMOTE -> "Network"
+                        else -> "Unknown"
+                    }
+                    SimpleApiLogger.logResponse(iconUrl, 200, "Icon loaded from $cacheStatus", duration)
+                    return false
                 }
-            }
-        }
+
+            })
+            .into(imageView)
     }
 }
