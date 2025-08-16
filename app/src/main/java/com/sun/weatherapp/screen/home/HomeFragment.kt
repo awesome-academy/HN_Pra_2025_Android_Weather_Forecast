@@ -56,6 +56,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
                     R.id.action_home_fragment_to_wind_details_fragment
                 )
             }
+            tvCurrentTemperature.setOnClickListener {
+                findNavController().navigate(R.id.action_home_fragment_to_temp_details_fragment)
+            }
         }
     }
 

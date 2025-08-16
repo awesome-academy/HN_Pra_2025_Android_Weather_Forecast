@@ -56,7 +56,8 @@ data class Wind(
 
 @Parcelize
 data class Rain(
-    val `1h`: Double
+    val `1h`: Double?,
+    val `3h`: Double?
 ) : Parcelable
 
 @Parcelize
@@ -73,19 +74,20 @@ data class Sys(
     val sunset: Long
 ) : Parcelable
 
-// OneCall API Wind Data Models
+// OneCall API Weather Data Models
 @Parcelize
-data class WindDetailResponse(
+data class WeatherDetailResponse(
     val lat: Double,
     val lon: Double,
     val timezone: String,
     val timezone_offset: Int,
-    val current: CurrentWind,
-    val daily: List<DailyWind>
+    val current: CurrentWeather,
+    val hourly: List<HourlyWeather>,
+    val daily: List<DailyWeather>
 ) : Parcelable
 
 @Parcelize
-data class CurrentWind(
+data class CurrentWeather(
     val dt: Long,
     val sunrise: Long,
     val sunset: Long,
@@ -100,12 +102,30 @@ data class CurrentWind(
     val wind_speed: Double,
     val wind_deg: Int,
     val wind_gust: Double?,
+    val weather: List<Weather>
+) : Parcelable
+
+@Parcelize
+data class HourlyWeather(
+    val dt: Long,
+    val temp: Double,
+    val feels_like: Double,
+    val pressure: Int,
+    val humidity: Int,
+    val dew_point: Double,
+    val uvi: Double,
+    val clouds: Int,
+    val visibility: Int,
+    val wind_speed: Double,
+    val wind_deg: Int,
+    val wind_gust: Double?,
     val weather: List<Weather>,
+    val pop: Double,
     val rain: Rain?
 ) : Parcelable
 
 @Parcelize
-data class DailyWind(
+data class DailyWeather(
     val dt: Long,
     val sunrise: Long,
     val sunset: Long,
@@ -193,9 +213,10 @@ object WeatherEntry {
     const val NAME = "name"
     const val COD = "cod"
     
-    // OneCall API Wind Detail entries
-    const val WIND_DETAIL = "wind_detail"
+    // OneCall API Weather Detail entries
+    const val WEATHER_DETAIL = "weather_detail"
     const val CURRENT = "current"
+    const val HOURLY = "hourly"
     const val DAILY = "daily"
     const val TIMEZONE_OFFSET = "timezone_offset"
     const val WIND_SPEED = "wind_speed"

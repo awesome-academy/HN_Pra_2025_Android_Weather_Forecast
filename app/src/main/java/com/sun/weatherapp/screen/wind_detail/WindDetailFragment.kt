@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.sun.weatherapp.WeatherApplication
 import com.sun.weatherapp.databinding.FragmentWindDetailBinding
-import com.sun.weatherapp.data.model.WindDetailResponse
+import com.sun.weatherapp.data.model.WeatherDetailResponse
 import com.sun.weatherapp.data.reposiroty.LocationRepository
 import com.sun.weatherapp.data.reposiroty.WeatherRepository
 import com.sun.weatherapp.data.reposiroty.source.local.LocationLocalDataSource
@@ -62,7 +62,7 @@ class WindDetailFragment : BaseFragment<FragmentWindDetailBinding, WindDetailPre
         }
     }
 
-    override fun showWindData(windData: WindDetailResponse) {
+    override fun showWindData(windData: WeatherDetailResponse) {
         updateUI(windData)
     }
 
@@ -80,7 +80,7 @@ class WindDetailFragment : BaseFragment<FragmentWindDetailBinding, WindDetailPre
     }
 
 
-    private fun updateUI(windData: WindDetailResponse) {
+    private fun updateUI(windData: WeatherDetailResponse) {
         binding.apply {
             // Hiển thị tốc độ gió hiện tại (convert từ m/s sang km/h)
             tvCurrentTemperature.text = "${windData.current.wind_speed.toKmPerHour()}km/h"
@@ -98,8 +98,8 @@ class WindDetailFragment : BaseFragment<FragmentWindDetailBinding, WindDetailPre
             }
             
             // Tính toán min/max wind speed trong ngày (convert từ m/s sang km/h)
-            val minWindSpeed = windData.daily.minOfOrNull { it.wind_speed.toKmPerHour() } ?: windSpeed
-            val maxWindSpeed = windData.daily.maxOfOrNull { it.wind_speed.toKmPerHour() } ?: gustSpeed
+            val minWindSpeed = windData.hourly.take(7).minOfOrNull { it.wind_speed.toKmPerHour() } ?: windSpeed
+            val maxWindSpeed = windData.hourly.take(7).maxOfOrNull { it.wind_speed.toKmPerHour() } ?: gustSpeed
             
             val summaryText = "Gió hiện tại đang thổi với tốc độ ${windSpeed} km/h từ hướng ${windDirection.lowercase()}. " +
                     "Hôm nay, tốc độ gió dao động từ ${minWindSpeed} đến ${maxWindSpeed} km/h."
@@ -109,9 +109,9 @@ class WindDetailFragment : BaseFragment<FragmentWindDetailBinding, WindDetailPre
         }
     }
 
-    private fun setupWindChart(windData: WindDetailResponse) {
-        val days = List(windData.daily.take(7).size) { index -> index.toFloat() + 1f }
-        val windSpeeds = windData.daily.take(7).map { it.wind_speed.toKmPerHourFloat() }
+    private fun setupWindChart(windData: WeatherDetailResponse) {
+        val days = List(windData.hourly.take(7).size) { index -> index.toFloat() + 1f }
+        val windSpeeds = windData.hourly.take(7).map { it.wind_speed.toKmPerHourFloat() }
 
         binding.weatherChart.let { chart ->
             chart.setData(

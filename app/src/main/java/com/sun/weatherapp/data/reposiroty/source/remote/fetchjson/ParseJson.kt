@@ -36,7 +36,10 @@ class ParseJson {
             )
         },
         rain = jsonObject.optJSONObject(WeatherEntry.RAIN)?.run {
-            Rain(`1h` = getDouble("1h"))
+            Rain(
+                `1h` = optDouble("1h", Double.NaN).takeIf { !it.isNaN() },
+                `3h` = optDouble("3h", Double.NaN).takeIf { !it.isNaN() }
+            )
         },
         clouds = jsonObject.getJSONObject(WeatherEntry.CLOUDS).run {
             Clouds(all = getInt(WeatherEntry.ALL))
@@ -57,13 +60,13 @@ class ParseJson {
         cod = jsonObject.getInt(WeatherEntry.COD)
     )
 
-    fun parseWindDetailJson(jsonObject: JSONObject) = WindDetailResponse(
+    fun parseWeatherDetailJson(jsonObject: JSONObject) = WeatherDetailResponse(
         lat = jsonObject.getDouble(WeatherEntry.LAT),
         lon = jsonObject.getDouble(WeatherEntry.LON),
         timezone = jsonObject.getString(WeatherEntry.TIMEZONE),
         timezone_offset = jsonObject.getInt(WeatherEntry.TIMEZONE_OFFSET),
         current = jsonObject.getJSONObject(WeatherEntry.CURRENT).run {
-            CurrentWind(
+            CurrentWeather(
                 dt = getLong(WeatherEntry.DT),
                 sunrise = getLong(WeatherEntry.SUNRISE),
                 sunset = getLong(WeatherEntry.SUNSET),
@@ -78,21 +81,52 @@ class ParseJson {
                 wind_speed = getDouble(WeatherEntry.WIND_SPEED),
                 wind_deg = getInt(WeatherEntry.WIND_DEG),
                 wind_gust = optDouble(WeatherEntry.WIND_GUST, Double.NaN).takeIf { !it.isNaN() },
-                weather = getJSONArray(WeatherEntry.WEATHER).parseWeatherList(),
-                rain = optJSONObject(WeatherEntry.RAIN)?.run {
-                    Rain(`1h` = getDouble("1h"))
-                }
+                weather = getJSONArray(WeatherEntry.WEATHER).parseWeatherList()
             )
         },
-        daily = jsonObject.getJSONArray(WeatherEntry.DAILY).parseDailyWindList()
+        hourly = jsonObject.getJSONArray("hourly").parseHourlyWeatherList(),
+        daily = jsonObject.getJSONArray(WeatherEntry.DAILY).parseDailyWeatherList()
     )
 
-    private fun JSONArray.parseDailyWindList(): List<DailyWind> {
-        val list = mutableListOf<DailyWind>()
+    private fun JSONArray.parseHourlyWeatherList(): List<HourlyWeather> {
+        val list = mutableListOf<HourlyWeather>()
         for (i in 0 until length()) {
             getJSONObject(i).apply {
                 list.add(
-                    DailyWind(
+                    HourlyWeather(
+                        dt = getLong(WeatherEntry.DT),
+                        temp = getDouble(WeatherEntry.TEMP),
+                        feels_like = getDouble(WeatherEntry.FEELS_LIKE),
+                        pressure = getInt(WeatherEntry.PRESSURE),
+                        humidity = getInt(WeatherEntry.HUMIDITY),
+                        dew_point = getDouble(WeatherEntry.DEW_POINT),
+                        uvi = getDouble(WeatherEntry.UVI),
+                        clouds = getInt(WeatherEntry.CLOUDS),
+                        visibility = getInt(WeatherEntry.VISIBILITY),
+                        wind_speed = getDouble(WeatherEntry.WIND_SPEED),
+                        wind_deg = getInt(WeatherEntry.WIND_DEG),
+                        wind_gust = optDouble(WeatherEntry.WIND_GUST, Double.NaN).takeIf { !it.isNaN() },
+                        weather = getJSONArray(WeatherEntry.WEATHER).parseWeatherList(),
+                        pop = getDouble(WeatherEntry.POP),
+                        rain = optJSONObject(WeatherEntry.RAIN)?.run {
+                            Rain(
+                                `1h` = optDouble("1h", Double.NaN).takeIf { !it.isNaN() },
+                                `3h` = optDouble("3h", Double.NaN).takeIf { !it.isNaN() }
+                            )
+                        }
+                    )
+                )
+            }
+        }
+        return list
+    }
+
+    private fun JSONArray.parseDailyWeatherList(): List<DailyWeather> {
+        val list = mutableListOf<DailyWeather>()
+        for (i in 0 until length()) {
+            getJSONObject(i).apply {
+                list.add(
+                    DailyWeather(
                         dt = getLong(WeatherEntry.DT),
                         sunrise = getLong(WeatherEntry.SUNRISE),
                         sunset = getLong(WeatherEntry.SUNSET),

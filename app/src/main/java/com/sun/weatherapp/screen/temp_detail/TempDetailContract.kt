@@ -1,15 +1,15 @@
-package com.sun.weatherapp.screen.wind_detail
+package com.sun.weatherapp.screen.temp_detail
 
 import com.sun.weatherapp.data.model.WeatherDetailResponse
 import com.sun.weatherapp.screen.base.BaseContract
 
-interface WindDetailContract {
+interface TempDetailContract {
     interface View : BaseContract.View {
-        fun showWindData(windData: WeatherDetailResponse)
+        fun showTempData(data: WeatherDetailResponse)
     }
 
     interface Presenter : BaseContract.Presenter<View> {
-        fun loadWindDetail()
+        fun funLoadTempDetail()
         fun refreshData()
     }
 }

@@ -3,7 +3,7 @@ package com.sun.weatherapp.data.reposiroty.source.remote
 import com.sun.mvp.data.repository.source.remote.fetchjson.GetJsonFromUrl
 import com.sun.weatherapp.data.model.WeatherEntry
 import com.sun.weatherapp.data.model.WeatherResponse
-import com.sun.weatherapp.data.model.WindDetailResponse
+import com.sun.weatherapp.data.model.WeatherDetailResponse
 import com.sun.weatherapp.data.reposiroty.source.WeatherDataSource
 import com.sun.weatherapp.utils.Constant
 
@@ -26,11 +26,11 @@ class WeatherRemoteDataSource : WeatherDataSource.Remote {
         )
     }
 
-    override fun getWindDetail(lat: Double, lon: Double, listener: OnResultListener<WindDetailResponse>) {
-        val url = "${Constant.ONECALL_WEATHER_ENDPOINT}?lat=$lat&lon=$lon&exclude=hourly"
+    override fun getWeatherDetail(lat: Double, lon: Double, listener: OnResultListener<WeatherDetailResponse>) {
+        val url = "${Constant.ONECALL_WEATHER_ENDPOINT}?lat=$lat&lon=$lon&exclude=minutely"
         GetJsonFromUrl(
             urlString = url,
-            keyEntity = WeatherEntry.WIND_DETAIL,
+            keyEntity = WeatherEntry.WEATHER_DETAIL,
             listener = listener
         )
     }

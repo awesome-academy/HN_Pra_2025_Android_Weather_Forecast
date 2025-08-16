@@ -1,7 +1,7 @@
 package com.sun.weatherapp.data.reposiroty.source
 
 import com.sun.weatherapp.data.model.WeatherResponse
-import com.sun.weatherapp.data.model.WindDetailResponse
+import com.sun.weatherapp.data.model.WeatherDetailResponse
 import com.sun.weatherapp.data.reposiroty.source.remote.OnResultListener
 
 interface WeatherDataSource {
@@ -10,7 +10,7 @@ interface WeatherDataSource {
      */
     interface Local {
         fun getCurrentWeather(lat: Double, lon: Double, listener: OnResultListener<WeatherResponse>)
-        fun getWindDetail(lat: Double, lon: Double, listener: OnResultListener<WindDetailResponse>)
+        fun getWeatherDetail(lat: Double, lon: Double, listener: OnResultListener<WeatherDetailResponse>)
     }
 
     /**
@@ -18,6 +18,6 @@ interface WeatherDataSource {
      */
     interface Remote {
         fun getCurrentWeather(lat: Double, lon: Double, listener: OnResultListener<WeatherResponse>)
-        fun getWindDetail(lat: Double, lon: Double, listener: OnResultListener<WindDetailResponse>)
+        fun getWeatherDetail(lat: Double, lon: Double, listener: OnResultListener<WeatherDetailResponse>)
     }
 }

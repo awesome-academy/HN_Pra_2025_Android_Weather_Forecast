@@ -14,6 +14,10 @@
             android:id="@+id/action_home_fragment_to_wind_details_fragment"
             app:destination="@id/wind_details_fragment" />
 
+        <action
+            android:id="@+id/action_home_fragment_to_temp_details_fragment"
+            app:destination="@id/temp_details_fragment" />
+
     </fragment>
 
     <fragment
@@ -72,6 +76,11 @@
         android:name="com.sun.weatherapp.screen.wind_detail.WindDetailFragment"
         android:label="Wind Details"
         tools:layout="@layout/fragment_wind_detail" />
-    />
+
+    <fragment
+        android:id="@+id/temp_details_fragment"
+        android:name="com.sun.weatherapp.screen.wind_detail.TempDetailFragment"
+        android:label="Temp Details"
+        tools:layout="@layout/fragment_temp_detail" />
 
 </navigation>

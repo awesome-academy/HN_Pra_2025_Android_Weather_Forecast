@@ -1,7 +1,7 @@
 package com.sun.weatherapp.data.reposiroty
 
 import com.sun.weatherapp.data.model.WeatherResponse
-import com.sun.weatherapp.data.model.WindDetailResponse
+import com.sun.weatherapp.data.model.WeatherDetailResponse
 import com.sun.weatherapp.data.reposiroty.source.WeatherDataSource
 import com.sun.weatherapp.data.reposiroty.source.remote.OnResultListener
 
@@ -14,8 +14,8 @@ class WeatherRepository private constructor(
         remote.getCurrentWeather(lat, lon, listener)
     }
 
-    override fun getWindDetail(lat: Double, lon: Double, listener: OnResultListener<WindDetailResponse>) {
-        remote.getWindDetail(lat, lon, listener)
+    override fun getWeatherDetail(lat: Double, lon: Double, listener: OnResultListener<WeatherDetailResponse>) {
+        remote.getWeatherDetail(lat, lon, listener)
     }
 
     companion object {

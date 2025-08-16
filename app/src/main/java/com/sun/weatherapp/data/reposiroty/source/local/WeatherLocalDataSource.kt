@@ -1,7 +1,7 @@
 package com.sun.weatherapp.data.reposiroty.source.local
 
 import com.sun.weatherapp.data.model.WeatherResponse
-import com.sun.weatherapp.data.model.WindDetailResponse
+import com.sun.weatherapp.data.model.WeatherDetailResponse
 import com.sun.weatherapp.data.reposiroty.source.WeatherDataSource
 import com.sun.weatherapp.data.reposiroty.source.remote.OnResultListener
 
@@ -11,7 +11,7 @@ class WeatherLocalDataSource : WeatherDataSource.Local {
         listener.onError(Exception("Local data source not implemented yet"))
     }
 
-    override fun getWindDetail(lat: Double, lon: Double, listener: OnResultListener<WindDetailResponse>) {
+    override fun getWeatherDetail(lat: Double, lon: Double, listener: OnResultListener<WeatherDetailResponse>) {
         listener.onError(Exception("Local wind detail data source not implemented yet"))
     }
 
