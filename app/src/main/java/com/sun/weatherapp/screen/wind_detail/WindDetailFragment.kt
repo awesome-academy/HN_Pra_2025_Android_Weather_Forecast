@@ -57,11 +57,26 @@ class WindDetailFragment : BaseFragment<FragmentWindDetailBinding, WindDetailPre
     }
 
     override fun setupListeners() {
-
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            presenter?.refreshData()
+        }
     }
 
     override fun showWindData(windData: WindDetailResponse) {
         updateUI(windData)
+    }
+
+    override fun showLoading() {
+        if (binding.swipeRefreshLayout.isRefreshing) {
+            return
+        }
+        super.showLoading()
+    }
+
+    override fun hideLoading() {
+        // Hide cả dialog và SwipeRefreshLayout
+        super.hideLoading()
+        binding.swipeRefreshLayout.isRefreshing = false
     }
 
 

@@ -10,5 +10,6 @@ interface WindDetailContract {
 
     interface Presenter : BaseContract.Presenter<View> {
         fun loadWindDetail()
+        fun refreshData()
     }
 }

@@ -25,11 +25,14 @@ class WindDetailPresenter(
             }
 
             override fun onError(exception: Exception?) {
+                getView()?.hideLoading()
                 getView()?.showError(exception?.message ?: "Failed to get current location")
             }
         })
+    }
 
-
+    override fun refreshData() {
+        loadWindDetail()
     }
 
     private fun fetchWeatherDataWithLocation(latitude: Double, longitude: Double) {
