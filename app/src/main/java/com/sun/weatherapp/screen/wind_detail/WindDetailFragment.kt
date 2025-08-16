@@ -95,7 +95,7 @@ class WindDetailFragment : BaseFragment<FragmentWindDetailBinding, WindDetailPre
     }
 
     private fun setupWindChart(windData: WindDetailResponse) {
-        val days = List(windData.daily.take(7).size) { index -> index.toFloat() }
+        val days = List(windData.daily.take(7).size) { index -> index.toFloat() + 1f }
         val windSpeeds = windData.daily.take(7).map { it.wind_speed.toKmPerHourFloat() }
 
         binding.weatherChart.let { chart ->
@@ -104,7 +104,8 @@ class WindDetailFragment : BaseFragment<FragmentWindDetailBinding, WindDetailPre
                 windSpeeds, 
                 maximumNumberOfDisplayPointInXAxis = 7, 
                 title = "Dự báo tốc độ gió 7 giờ tới",
-                highlightIndex = 0
+                highlightIndex = 0,
+                xT = "Giờ tới"
             )
             chart.setOnPointSelectedListener(object : ChartView.OnPointSelectedListener {
                 override fun onPointSelected(xValue: Float, yValue: Float, index: Int) {
