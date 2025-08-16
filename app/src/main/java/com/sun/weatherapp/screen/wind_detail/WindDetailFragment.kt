@@ -1,11 +1,7 @@
 package com.sun.weatherapp.screen.wind_detail
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.sun.weatherapp.WeatherApplication
 import com.sun.weatherapp.databinding.FragmentWindDetailBinding
 import com.sun.weatherapp.data.model.WindDetailResponse
@@ -16,11 +12,10 @@ import com.sun.weatherapp.data.reposiroty.source.local.WeatherLocalDataSource
 import com.sun.weatherapp.data.reposiroty.source.remote.WeatherRemoteDataSource
 import com.sun.weatherapp.screen.base.BaseFragment
 import com.sun.weatherapp.screen.widget.ChartView
-import com.sun.weatherapp.utils.toCelsius
 import com.sun.weatherapp.utils.toKmPerHour
 import com.sun.weatherapp.utils.toKmPerHourFloat
 import com.sun.weatherapp.utils.toWindDirection
-import kotlin.random.Random
+import com.sun.weatherapp.utils.WeatherIconLoader
 
 
 class WindDetailFragment : BaseFragment<FragmentWindDetailBinding, WindDetailPresenter>(), WindDetailContract.View {
@@ -72,16 +67,27 @@ class WindDetailFragment : BaseFragment<FragmentWindDetailBinding, WindDetailPre
 
     private fun updateUI(windData: WindDetailResponse) {
         binding.apply {
+            // Hiển thị tốc độ gió hiện tại (convert từ m/s sang km/h)
             tvCurrentTemperature.text = "${windData.current.wind_speed.toKmPerHour()}km/h"
             tvTitle.text = "Hà Nội, Việt Nam"
+            
             val currentWind = windData.current
             val windDirection = currentWind.wind_deg.toWindDirection()
             val windSpeed = currentWind.wind_speed.toKmPerHour()
             val gustSpeed = currentWind.wind_gust?.toKmPerHour() ?: windSpeed
             
+            // Load weather icon từ API
+            if (currentWind.weather.isNotEmpty()) {
+                val iconCode = currentWind.weather[0].icon
+                WeatherIconLoader.loadWeatherIcon(iconCode, icWeatherIcon)
+            }
+            
+            // Tính toán min/max wind speed trong ngày (convert từ m/s sang km/h)
+            val minWindSpeed = windData.daily.minOfOrNull { it.wind_speed.toKmPerHour() } ?: windSpeed
+            val maxWindSpeed = windData.daily.maxOfOrNull { it.wind_speed.toKmPerHour() } ?: gustSpeed
+            
             val summaryText = "Gió hiện tại đang thổi với tốc độ ${windSpeed} km/h từ hướng ${windDirection.lowercase()}. " +
-                    "Hôm nay, tốc độ gió dao động từ ${windData.daily.minOfOrNull { it.wind_speed.toKmPerHour() } ?: windSpeed} " +
-                    "đến ${windData.daily.maxOfOrNull { it.wind_speed.toKmPerHour() } ?: gustSpeed} km/h."
+                    "Hôm nay, tốc độ gió dao động từ ${minWindSpeed} đến ${maxWindSpeed} km/h."
             
             tvSummary.text = summaryText
             setupWindChart(windData)
