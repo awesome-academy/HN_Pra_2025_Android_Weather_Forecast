@@ -1,5 +1,7 @@
 package com.sun.weatherapp.utils
 
+import kotlin.math.roundToInt
+
 /**
  * Extension functions for temperature conversion
  */
@@ -9,7 +11,7 @@ package com.sun.weatherapp.utils
  * @return temperature in Celsius as Integer
  */
 fun Double.toCelsius(): Int {
-    return (this - Constant.KELVIN_TO_CELSIUS_OFFSET).toInt()
+    return (this - Constant.KELVIN_TO_CELSIUS_OFFSET).roundToInt()
 }
 
 /**
@@ -17,7 +19,7 @@ fun Double.toCelsius(): Int {
  * @return temperature in Celsius as Integer
  */
 fun Float.toCelsius(): Int {
-    return (this - Constant.KELVIN_TO_CELSIUS_OFFSET).toInt()
+    return (this - Constant.KELVIN_TO_CELSIUS_OFFSET).roundToInt()
 }
 
 /**
@@ -25,7 +27,7 @@ fun Float.toCelsius(): Int {
  * @return temperature in Fahrenheit as Integer
  */
 fun Double.toFahrenheit(): Int {
-    return ((this - Constant.KELVIN_TO_CELSIUS_OFFSET) * 9 / 5 + 32).toInt()
+    return ((this - Constant.KELVIN_TO_CELSIUS_OFFSET) * 9 / 5 + 32).roundToInt()
 }
 
 /**
@@ -33,7 +35,7 @@ fun Double.toFahrenheit(): Int {
  * @return temperature in Fahrenheit as Integer
  */
 fun Float.toFahrenheit(): Int {
-    return ((this - Constant.KELVIN_TO_CELSIUS_OFFSET) * 9 / 5 + 32).toInt()
+    return ((this - Constant.KELVIN_TO_CELSIUS_OFFSET) * 9 / 5 + 32).roundToInt()
 }
 
 /**
@@ -41,7 +43,7 @@ fun Float.toFahrenheit(): Int {
  * @return wind speed in km/h as Integer
  */
 fun Double.toKmPerHour(): Int {
-    return (this * 3.6).toInt()
+    return (this * 3.6).roundToInt()
 }
 
 /**
@@ -57,15 +59,15 @@ fun Double.toKmPerHourFloat(): Float {
  * @return wind direction as String
  */
 fun Int.toWindDirection(): String {
-    return when {
-        this in 0..22 || this in 338..360 -> "Bắc"
-        this in 23..67 -> "Đông Bắc"
-        this in 68..112 -> "Đông"
-        this in 113..157 -> "Đông Nam"
-        this in 158..202 -> "Nam"
-        this in 203..247 -> "Tây Nam"
-        this in 248..292 -> "Tây"
-        this in 293..337 -> "Tây Bắc"
+    return when (this) {
+        in 0..22, in 338..360 -> "Bắc"
+        in 23..67 -> "Đông Bắc"
+        in 68..112 -> "Đông"
+        in 113..157 -> "Đông Nam"
+        in 158..202 -> "Nam"
+        in 203..247 -> "Tây Nam"
+        in 248..292 -> "Tây"
+        in 293..337 -> "Tây Bắc"
         else -> "Không xác định"
     }
 }
