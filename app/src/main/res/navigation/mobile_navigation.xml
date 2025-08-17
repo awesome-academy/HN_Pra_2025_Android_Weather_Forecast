@@ -26,6 +26,10 @@
             android:id="@+id/action_home_fragment_to_rain_details_fragment"
             app:destination="@id/rain_details_fragment" />
 
+        <action
+            android:id="@+id/action_home_fragment_to_uv_details_fragment"
+            app:destination="@id/uv_details_fragment" />
+
     </fragment>
 
     <fragment
@@ -108,5 +112,11 @@
         android:name="com.sun.weatherapp.screen.rain_detail.RainDetailFragment"
         android:label="Rain Details"
         tools:layout="@layout/fragment_rain_detail" />
+
+    <fragment
+        android:id="@+id/uv_details_fragment"
+        android:name="com.sun.weatherapp.screen.uv_detail.UVDetailFragment"
+        android:label="UV Details"
+        tools:layout="@layout/fragment_uv_detail" />
 
 </navigation>
