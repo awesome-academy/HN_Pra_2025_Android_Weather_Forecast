@@ -59,6 +59,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
             tvCurrentTemperature.setOnClickListener {
                 findNavController().navigate(R.id.action_home_fragment_to_temp_details_fragment)
             }
+            pressureSection.setOnClickListener {
+                findNavController().navigate(R.id.action_home_fragment_to_pressure_details_fragment)
+            }
         }
     }
 
