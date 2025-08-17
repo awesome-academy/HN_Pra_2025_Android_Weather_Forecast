@@ -91,9 +91,9 @@ class RainDetailFragment : BaseFragment<FragmentRainDetailBinding, RainDetailPre
 
     private fun updateUI(rainData: WeatherDetailResponse) {
         binding.apply {
-            val currentRainChance = (rainData.hourly.firstOrNull()?.let {
-                rainData.hourly.firstOrNull()?.pop ?: 0.0
-            } ?: 0.0 * 100).roundToInt()
+            val currentRainChance = rainData.hourly.firstOrNull()?.let {
+                (it.pop * 100).roundToInt()
+            }
             
             tvCurrentRainChance.text = "${currentRainChance}%"
             tvTitle.text = "Hà Nội, Việt Nam"
