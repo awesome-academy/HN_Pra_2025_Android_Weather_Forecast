@@ -62,6 +62,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
             pressureSection.setOnClickListener {
                 findNavController().navigate(R.id.action_home_fragment_to_pressure_details_fragment)
             }
+            humiditySection.setOnClickListener {
+                findNavController().navigate(R.id.action_home_fragment_to_rain_details_fragment)
+            }
         }
     }
 

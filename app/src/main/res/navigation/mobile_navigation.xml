@@ -22,6 +22,10 @@
             android:id="@+id/action_home_fragment_to_pressure_details_fragment"
             app:destination="@id/pressure_details_fragment" />
 
+        <action
+            android:id="@+id/action_home_fragment_to_rain_details_fragment"
+            app:destination="@id/rain_details_fragment" />
+
     </fragment>
 
     <fragment
@@ -98,5 +102,11 @@
         android:name="com.sun.weatherapp.screen.pressure_detail.PressureDetailFragment"
         android:label="Pressure Details"
         tools:layout="@layout/fragment_pressure_detail" />
+
+    <fragment
+        android:id="@+id/rain_details_fragment"
+        android:name="com.sun.weatherapp.screen.rain_detail.RainDetailFragment"
+        android:label="Rain Details"
+        tools:layout="@layout/fragment_rain_detail" />
 
 </navigation>
