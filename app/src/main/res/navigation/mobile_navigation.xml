@@ -30,6 +30,10 @@
             android:id="@+id/action_home_fragment_to_uv_details_fragment"
             app:destination="@id/uv_details_fragment" />
 
+        <action
+            android:id="@+id/action_home_fragment_to_search_fragment"
+            app:destination="@id/search_fragment" />
+
     </fragment>
 
     <fragment
@@ -87,13 +91,24 @@
         android:id="@+id/wind_details_fragment"
         android:name="com.sun.weatherapp.screen.wind_detail.WindDetailFragment"
         android:label="Wind Details"
-        tools:layout="@layout/fragment_wind_detail" />
+        tools:layout="@layout/fragment_wind_detail" >
+
+        <action
+            android:id="@+id/action_wind_details_fragment_to_search_fragment"
+            app:destination="@id/search_fragment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/temp_details_fragment"
         android:name="com.sun.weatherapp.screen.wind_detail.TempDetailFragment"
         android:label="Temp Details"
-        tools:layout="@layout/fragment_temp_detail" />
+        tools:layout="@layout/fragment_temp_detail" >
+
+        <action
+            android:id="@+id/action_temp_details_fragment_to_search_fragment"
+            app:destination="@id/search_fragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/notify_fragment"
@@ -105,18 +120,42 @@
         android:id="@+id/pressure_details_fragment"
         android:name="com.sun.weatherapp.screen.pressure_detail.PressureDetailFragment"
         android:label="Pressure Details"
-        tools:layout="@layout/fragment_pressure_detail" />
+        tools:layout="@layout/fragment_pressure_detail" >
+
+        <action
+            android:id="@+id/action_pressure_details_fragment_to_search_fragment"
+            app:destination="@id/search_fragment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/rain_details_fragment"
         android:name="com.sun.weatherapp.screen.rain_detail.RainDetailFragment"
         android:label="Rain Details"
-        tools:layout="@layout/fragment_rain_detail" />
+        tools:layout="@layout/fragment_rain_detail" >
+
+        <action
+            android:id="@+id/action_rain_details_fragment_to_search_fragment"
+            app:destination="@id/search_fragment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/uv_details_fragment"
         android:name="com.sun.weatherapp.screen.uv_detail.UVDetailFragment"
         android:label="UV Details"
-        tools:layout="@layout/fragment_uv_detail" />
+        tools:layout="@layout/fragment_uv_detail" >
+
+        <action
+            android:id="@+id/action_uv_details_fragment_to_search_fragment"
+            app:destination="@id/search_fragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/search_fragment"
+        android:name="com.sun.weatherapp.screen.search_weather.SearchWeatherFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search_weather" />
 
 </navigation>

@@ -68,6 +68,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomePresenter>(), HomeCon
             uvIndexSection.setOnClickListener {
                 findNavController().navigate(R.id.action_home_fragment_to_uv_details_fragment)
             }
+            icSearch.setOnClickListener {
+                findNavController().navigate(R.id.action_home_fragment_to_search_fragment)
+            }
         }
     }
 

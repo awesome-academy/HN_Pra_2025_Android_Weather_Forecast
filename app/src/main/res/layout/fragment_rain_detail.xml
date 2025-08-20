@@ -9,7 +9,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:padding="@dimen/dp_16"
         android:background="#E2D3FA">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -37,10 +37,10 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toEndOf="@id/icBack"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:text="Hà Nội, Việt Nam"
-                    android:textSize="24sp"
+                    android:text="@string/hanoi_vietnam"
+                    android:textSize="@dimen/text_size_title_medium"
                     android:textStyle="bold"
-                    android:layout_marginStart="24dp" />
+                    android:layout_marginStart="@dimen/dp_24" />
 
                 <ImageView
                     android:id="@+id/icSearch"
@@ -61,7 +61,7 @@
                     app:layout_constraintStart_toEndOf="@id/icBack"
                     app:layout_constraintTop_toBottomOf="@id/icBack"
                     android:padding="@dimen/dp_4"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/dp_16"
                     android:background="@drawable/ic_bg_white" />
 
                 <TextView
@@ -75,8 +75,8 @@
                     android:textColor="@color/black"
                     android:includeFontPadding="false"
                     android:lineSpacingExtra="@dimen/dp_0"
-                    android:layout_marginStart="8dp"
-                    android:text="Khả năng mưa" />
+                    android:layout_marginStart="@dimen/dp_8"
+                    android:text="@string/rain_chance_label" />
 
                 <TextView
                     android:id="@+id/tvCurrentRainChance"
@@ -84,22 +84,22 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/icRain"
                     app:layout_constraintStart_toStartOf="@id/icBack"
-                    android:textSize="42sp"
+                    android:textSize="@dimen/text_size_temperature"
                     android:textColor="@color/black"
                     android:includeFontPadding="false"
                     android:lineSpacingExtra="@dimen/dp_0"
-                    android:layout_marginTop="8dp"
-                    android:text="65%" />
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:text="@string/sample_rain_chance" />
 
                 <ImageView
                     android:id="@+id/icWeatherIcon"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="@dimen/weather_icon_size"
+                    android:layout_height="@dimen/weather_icon_size"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/icRain"
                     app:layout_constraintBottom_toBottomOf="@id/tvCurrentRainChance"
                     android:src="@drawable/ic_cloud_and_sun"
-                    android:layout_marginEnd="16dp" />
+                    android:layout_marginEnd="@dimen/dp_16" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -109,7 +109,7 @@
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
+        android:padding="@dimen/dp_16"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.core.widget.NestedScrollView
@@ -125,8 +125,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:layout_marginBottom="16dp"
+                    android:padding="@dimen/dp_16"
+                    android:layout_marginBottom="@dimen/dp_16"
                     android:background="@drawable/weather_card_detail">
 
                     <ImageView
@@ -143,22 +143,22 @@
                         android:id="@+id/tvChanceOfRain"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/text_size_body_medium"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:includeFontPadding="false"
                         android:lineSpacingExtra="@dimen/dp_0"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="@dimen/dp_8"
                         app:layout_constraintStart_toEndOf="@id/icRainChart"
                         app:layout_constraintTop_toTopOf="@id/icRainChart"
                         app:layout_constraintBottom_toBottomOf="@id/icRainChart"
-                        android:text="Chance of rain" />
+                        android:text="@string/chance_of_rain" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/listViewRainChance"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="@dimen/dp_16"
                         android:divider="@null"
                         android:dividerHeight="0dp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -169,13 +169,13 @@
                 <com.sun.weatherapp.screen.widget.ChartView
                     android:id="@+id/weatherChart"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_height="@dimen/chart_height"
+                    android:layout_marginBottom="@dimen/dp_16" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
+                    android:padding="@dimen/dp_16"
                     android:background="@drawable/weather_card_detail">
 
                     <ImageView
@@ -194,8 +194,8 @@
                         app:layout_constraintStart_toEndOf="@id/icCalendar"
                         app:layout_constraintTop_toTopOf="@id/icCalendar"
                         app:layout_constraintBottom_toBottomOf="@id/icCalendar"
-                        android:layout_marginStart="8dp"
-                        android:text="Tóm tắt hàng ngày"/>
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:text="@string/daily_summary"/>
 
                     <TextView
                         android:id="@+id/tvSummary"
@@ -203,9 +203,9 @@
                         android:layout_height="wrap_content"
                         app:layout_constraintTop_toBottomOf="@id/icCalendar"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:padding="8dp"
-                        android:layout_marginTop="8dp"
-                        android:text="Khả năng mưa hiện tại là 65%. Hôm nay có thể có mưa với khả năng cao nhất vào lúc 10 PM (88%)."
+                        android:padding="@dimen/dp_8"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:text="@string/sample_rain_summary"
                         android:background="@drawable/weather_card_background"
                         />
 

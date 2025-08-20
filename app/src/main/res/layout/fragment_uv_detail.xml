@@ -9,7 +9,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:padding="@dimen/dp_16"
         android:background="#E2D3FA">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -37,10 +37,10 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toEndOf="@id/icBack"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:text="Hà Nội, Việt Nam"
-                    android:textSize="24sp"
+                    android:text="@string/hanoi_vietnam"
+                    android:textSize="@dimen/text_size_title_medium"
                     android:textStyle="bold"
-                    android:layout_marginStart="24dp" />
+                    android:layout_marginStart="@dimen/dp_24" />
 
                 <ImageView
                     android:id="@+id/icSearch"
@@ -61,7 +61,7 @@
                     app:layout_constraintStart_toEndOf="@id/icBack"
                     app:layout_constraintTop_toBottomOf="@id/icBack"
                     android:padding="@dimen/dp_4"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/dp_16"
                     android:background="@drawable/ic_bg_white" />
 
                 <TextView
@@ -75,8 +75,8 @@
                     android:textColor="@color/black"
                     android:includeFontPadding="false"
                     android:lineSpacingExtra="@dimen/dp_0"
-                    android:layout_marginStart="8dp"
-                    android:text="Chỉ số UV" />
+                    android:layout_marginStart="@dimen/dp_8"
+                    android:text="@string/uv_index_label" />
 
                 <TextView
                     android:id="@+id/tvCurrentUV"
@@ -84,11 +84,11 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/icUV"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:textSize="@dimen/sp_74"
+                    android:textSize="@dimen/text_size_temperature"
                     android:textColor="@color/black"
                     android:includeFontPadding="false"
                     android:lineSpacingExtra="@dimen/dp_0"
-                    android:text="5" />
+                    android:text="@string/sample_uv_value" />
 
                 <TextView
                     android:id="@+id/tvUVLevel"
@@ -100,17 +100,17 @@
                     android:textColor="@color/black"
                     android:includeFontPadding="false"
                     android:lineSpacingExtra="@dimen/dp_0"
-                    android:text="Trung bình" />
+                    android:text="@string/sample_uv_level" />
 
                 <ImageView
                     android:id="@+id/icWeatherIcon"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="@dimen/weather_icon_size"
+                    android:layout_height="@dimen/weather_icon_size"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/icUV"
                     app:layout_constraintBottom_toBottomOf="@id/tvCurrentUV"
                     android:src="@drawable/ic_cloud_and_sun"
-                    android:layout_marginEnd="16dp" />
+                    android:layout_marginEnd="@dimen/dp_16" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -120,7 +120,7 @@
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
+        android:padding="@dimen/dp_16"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.core.widget.NestedScrollView
@@ -136,7 +136,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
+                    android:padding="@dimen/dp_16"
                     android:background="@drawable/weather_card_detail">
 
                     <ImageView
@@ -157,11 +157,11 @@
                         android:textColor="@color/black"
                         android:includeFontPadding="false"
                         android:lineSpacingExtra="@dimen/dp_0"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="@dimen/dp_8"
                         app:layout_constraintStart_toEndOf="@id/icClock"
                         app:layout_constraintTop_toTopOf="@id/icClock"
                         app:layout_constraintBottom_toBottomOf="@id/icClock"
-                        android:text="Dự báo theo giờ" />
+                        android:text="@string/hourly_forecast" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerViewUVDetail"
@@ -170,8 +170,8 @@
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:scrollbars="horizontal"
                         android:clipToPadding="false"
-                        android:padding="8dp"
-                        android:layout_marginTop="8dp"
+                        android:padding="@dimen/dp_8"
+                        android:layout_marginTop="@dimen/dp_8"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/icClock"
                         tools:itemCount="5"
@@ -183,14 +183,14 @@
                 <com.sun.weatherapp.screen.widget.ChartView
                     android:id="@+id/weatherChart"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_marginTop="16dp"/>
+                    android:layout_height="@dimen/chart_height"
+                    android:layout_marginTop="@dimen/dp_16"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:layout_marginTop="16dp"
+                    android:padding="@dimen/dp_16"
+                    android:layout_marginTop="@dimen/dp_16"
                     android:background="@drawable/weather_card_detail">
 
                     <ImageView
@@ -209,8 +209,8 @@
                         app:layout_constraintStart_toEndOf="@id/icCalendar"
                         app:layout_constraintTop_toTopOf="@id/icCalendar"
                         app:layout_constraintBottom_toBottomOf="@id/icCalendar"
-                        android:layout_marginStart="8dp"
-                        android:text="Tóm tắt hàng ngày"/>
+                        android:layout_marginStart="@dimen/dp_8"
+                        android:text="@string/daily_summary"/>
 
                     <TextView
                         android:id="@+id/tvSummary"
@@ -218,9 +218,9 @@
                         android:layout_height="wrap_content"
                         app:layout_constraintTop_toBottomOf="@id/icCalendar"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:padding="8dp"
-                        android:layout_marginTop="8dp"
-                        android:text="Chỉ số UV hiện tại là 5, ở mức trung bình. Hôm nay chỉ số UV dao động từ 0 đến 8. Nên sử dụng kem chống nắng khi ra ngoài."
+                        android:padding="@dimen/dp_8"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:text="@string/sample_uv_summary"
                         android:background="@drawable/weather_card_background"
                         />
 

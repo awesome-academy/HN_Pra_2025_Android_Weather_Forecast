@@ -2,7 +2,9 @@ package com.sun.weatherapp.screen.rain_detail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sun.weatherapp.R
 import com.sun.weatherapp.WeatherApplication
 import com.sun.weatherapp.databinding.FragmentRainDetailBinding
 import com.sun.weatherapp.data.model.WeatherDetailResponse
@@ -62,6 +64,9 @@ class RainDetailFragment : BaseFragment<FragmentRainDetailBinding, RainDetailPre
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = rainChanceAdapter
                 isNestedScrollingEnabled = false // Disable RecyclerView scroll
+            }
+            icSearch.setOnClickListener {
+                findNavController().navigate(R.id.action_rain_details_fragment_to_search_fragment)
             }
         }
         presenter?.loadRainDetail()

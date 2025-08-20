@@ -1,8 +1,11 @@
 package com.sun.weatherapp.screen.pressure_detail
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sun.weatherapp.R
 import com.sun.weatherapp.WeatherApplication
 import com.sun.weatherapp.databinding.FragmentPressureDetailBinding
 import com.sun.weatherapp.data.model.WeatherDetailResponse
@@ -58,6 +61,9 @@ class PressureDetailFragment : BaseFragment<FragmentPressureDetailBinding, Press
             recyclerViewPressureDetail.apply {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 adapter = hourlyPressureAdapter
+            }
+            icSearch.setOnClickListener {
+                findNavController().navigate(R.id.action_pressure_details_fragment_to_search_fragment)
             }
         }
         presenter?.loadPressureDetail()

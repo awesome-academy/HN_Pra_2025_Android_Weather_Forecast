@@ -2,6 +2,8 @@ package com.sun.weatherapp.screen.wind_detail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.sun.weatherapp.R
 import com.sun.weatherapp.WeatherApplication
 import com.sun.weatherapp.databinding.FragmentWindDetailBinding
 import com.sun.weatherapp.data.model.WeatherDetailResponse
@@ -51,6 +53,9 @@ class WindDetailFragment : BaseFragment<FragmentWindDetailBinding, WindDetailPre
         binding.apply {
             icBack.setOnClickListener {
                 requireActivity().onBackPressedDispatcher.onBackPressed()
+            }
+            icSearch.setOnClickListener {
+                findNavController().navigate(R.id.action_wind_details_fragment_to_search_fragment)
             }
         }
         presenter?.loadWindDetail()
@@ -110,17 +115,17 @@ class WindDetailFragment : BaseFragment<FragmentWindDetailBinding, WindDetailPre
     }
 
     private fun setupWindChart(windData: WeatherDetailResponse) {
-        val days = List(windData.hourly.take(7).size) { index -> index.toFloat() + 1f }
+        val hours = List(windData.hourly.take(7).size) { index -> index.toFloat() + 1f}
         val windSpeeds = windData.hourly.take(7).map { it.wind_speed.toKmPerHourFloat() }
 
         binding.weatherChart.let { chart ->
             chart.setData(
-                days, 
+                hours,
                 windSpeeds, 
                 maximumNumberOfDisplayPointInXAxis = 7, 
                 title = "Dự báo tốc độ gió 7 giờ tới",
                 highlightIndex = 0,
-                xT = "Giờ tới"
+                xT = "Giờ"
             )
             chart.setOnPointSelectedListener(object : ChartView.OnPointSelectedListener {
                 override fun onPointSelected(xValue: Float, yValue: Float, index: Int) {

@@ -106,6 +106,19 @@
     <dimen name="af_util_header_height_small">48dp</dimen>
     <dimen name="af_util_footer_height">72dp</dimen>
 
-
+    <!-- Additional dimensions for hard-coded values -->
+    <dimen name="weather_icon_size">60dp</dimen>
+    <dimen name="weather_icon_large">120dp</dimen>
+    <dimen name="chart_height">300dp</dimen>
+    <dimen name="search_bar_height">48dp</dimen>
+    <dimen name="progress_indicator_height">12dp</dimen>
+    
+    <!-- Text sizes for hard-coded values -->
+    <dimen name="text_size_title_large">42sp</dimen>
+    <dimen name="text_size_title_medium">24sp</dimen>
+    <dimen name="text_size_body_medium">18sp</dimen>
+    <dimen name="text_size_body_small">16sp</dimen>
+    <dimen name="text_size_caption">12sp</dimen>
+    <dimen name="text_size_temperature_large">20sp</dimen>
 
 </resources>

@@ -103,4 +103,41 @@
     <string name="change_password_success">Đổi mật khẩu thành công</string>
     <string name="update_image_success">Cập nhật ảnh đại diện thành công</string>
     <string name="now_playing">Now playing</string>
+    
+    <!-- Weather Detail Fragments -->
+    <string name="hanoi_vietnam">Hà Nội, Việt Nam</string>
+    <string name="uv_index_label">Chỉ số UV</string>
+    <string name="rain_chance_label">Khả năng mưa</string>
+    <string name="temperature_label">Nhiệt độ</string>
+    <string name="wind_speed_label">Tốc độ gió</string>
+    <string name="hourly_forecast">Dự báo theo giờ</string>
+    <string name="daily_summary">Tóm tắt hàng ngày</string>
+    <string name="chance_of_rain">Chance of rain</string>
+    
+    <!-- Sample UV/Rain/Wind values -->
+    <string name="sample_uv_value">5</string>
+    <string name="sample_uv_level">Trung bình</string>
+    <string name="sample_rain_chance">65%</string>
+    <string name="sample_wind_speed">16km/h</string>
+    
+    <!-- Sample summary texts -->
+    <string name="sample_uv_summary">Chỉ số UV hiện tại là 5, ở mức trung bình. Hôm nay chỉ số UV dao động từ 0 đến 8. Nên sử dụng kem chống nắng khi ra ngoài.</string>
+    <string name="sample_rain_summary" formatted="false">Khả năng mưa hiện tại là 65%. Hôm nay có thể có mưa với khả năng cao nhất vào lúc 10 PM (88%).</string>
+    <string name="sample_wind_summary">Gió hiện tại đang thổi với tốc độ 16 km/h từ hướng đông nam. Hôm nay, tốc độ gió dao động từ 5 đến 16 km/h.</string>
+    
+    <!-- Search Weather Fragment -->
+    <string name="current_location">Vị trí hiện tại</string>
+    <string name="recent_searches">Tìm kiếm gần đây</string>
+    <string name="sample_city_hanoi">Hanoi</string>
+    <string name="sample_city_danang">Da Nang</string>
+    <string name="sample_country_vietnam">Vietnam</string>
+    <string name="sample_weather_desc_current">Mưa lả tả gần đó</string>
+    <string name="sample_weather_desc_recent">Clear</string>
+    <string name="sample_temp_current">28.4°</string>
+    <string name="sample_temp_recent">26°</string>
+    
+    <!-- Item layouts -->
+    <string name="current_time">Hiện tại</string>
+    <string name="sample_time_7pm">7 PM</string>
+    <string name="sample_percentage">27%</string>
 </resources>

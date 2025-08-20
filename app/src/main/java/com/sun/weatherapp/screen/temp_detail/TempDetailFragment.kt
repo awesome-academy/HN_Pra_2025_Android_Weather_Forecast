@@ -2,7 +2,9 @@ package com.sun.weatherapp.screen.wind_detail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sun.weatherapp.R
 import com.sun.weatherapp.WeatherApplication
 import com.sun.weatherapp.data.model.WeatherDetailResponse
 import com.sun.weatherapp.data.reposiroty.LocationRepository
@@ -61,6 +63,9 @@ class TempDetailFragment : BaseFragment<FragmentTempDetailBinding, TempDetailPre
             recyclerViewWindDetail.apply {
                 layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                 adapter = hourlyWeatherAdapter
+            }
+            icSearch.setOnClickListener {
+                findNavController().navigate(R.id.action_temp_details_fragment_to_search_fragment)
             }
         }
         presenter?.funLoadTempDetail()
