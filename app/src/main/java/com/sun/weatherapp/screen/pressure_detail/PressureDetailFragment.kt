@@ -1,6 +1,5 @@
 package com.sun.weatherapp.screen.pressure_detail
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
@@ -95,7 +94,7 @@ class PressureDetailFragment : BaseFragment<FragmentPressureDetailBinding, Press
         binding.apply {
             // Hiển thị áp suất hiện tại
             tvCurrentPressure.text = "${pressureData.current.pressure}hPa"
-            tvTitle.text = "Hà Nội, Việt Nam"
+            tvTitle.text = getString(R.string.hanoi_vietnam)
             
             val currentWeather = pressureData.current
             

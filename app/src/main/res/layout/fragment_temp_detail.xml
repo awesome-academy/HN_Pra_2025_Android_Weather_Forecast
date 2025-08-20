@@ -220,7 +220,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         android:padding="@dimen/dp_8"
                         android:layout_marginTop="@dimen/dp_8"
-                        android:text="Gió hiện tại đang thổi với tốc độ 16 km/h từ hướng đông nam. Hôm nay, tốc độ gió dao động từ 5 đến 16 km/h. "
+                        android:text="@string/sample_wind_summary"
                         android:background="@drawable/weather_card_background"
                         />
                 </androidx.constraintlayout.widget.ConstraintLayout>
