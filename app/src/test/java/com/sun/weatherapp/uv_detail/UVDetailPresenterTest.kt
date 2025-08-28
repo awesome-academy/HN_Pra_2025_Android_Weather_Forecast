@@ -17,6 +17,7 @@ import com.sun.weatherapp.data.reposiroty.WeatherRepository
 import com.sun.weatherapp.data.reposiroty.source.remote.OnResultListener
 import com.sun.weatherapp.screen.uv_detail.UVDetailContract
 import com.sun.weatherapp.screen.uv_detail.UVDetailPresenter
+import com.sun.weatherapp.testutil.TestDummies
 import org.junit.Before
 import org.junit.Test
 import org.mockito.ArgumentMatchers.eq
@@ -85,7 +86,7 @@ class UVDetailPresenterTest {
         verify(mockWeatherRepo).getWeatherDetail(eq(1.0), eq(2.0), weatherCaptor.capture())
         val weatherListener = weatherCaptor.firstValue
 
-        val data = stubWeatherDetail()
+        val data = TestDummies.stubWeatherDetail()
         weatherListener.onSuccess(data)
 
         verify(mockView).hideLoading()
@@ -114,78 +115,5 @@ class UVDetailPresenterTest {
 
         verify(mockView).hideLoading()
         verify(mockView).showError("uv error")
-    }
-
-    private fun stubWeatherDetail(): WeatherDetailResponse {
-        val weather = listOf(Weather(id = 800, main = "Clear", description = "clear", icon = "01d"))
-        val current = CurrentWeather(
-            dt = 0L,
-            sunrise = 0L,
-            sunset = 0L,
-            temp = 300.0,
-            feels_like = 300.0,
-            pressure = 1013,
-            humidity = 50,
-            dew_point = 10.0,
-            uvi = 5.0,
-            clouds = 0,
-            visibility = 10000,
-            wind_speed = 1.0,
-            wind_deg = 0,
-            wind_gust = null,
-            weather = weather
-        )
-        val hourly = listOf(
-            HourlyWeather(
-                dt = 0L,
-                temp = 300.0,
-                feels_like = 300.0,
-                pressure = 1013,
-                humidity = 50,
-                dew_point = 10.0,
-                uvi = 5.0,
-                clouds = 0,
-                visibility = 10000,
-                wind_speed = 1.0,
-                wind_deg = 0,
-                wind_gust = null,
-                weather = weather,
-                pop = 0.0,
-                rain = null
-            )
-        )
-        val daily = listOf(
-            DailyWeather(
-                dt = 0L,
-                sunrise = 0L,
-                sunset = 0L,
-                moonrise = null,
-                moonset = null,
-                moon_phase = 0.0,
-                summary = "",
-                temp = DailyTemp(300.0, 299.0, 301.0, 298.0, 300.0, 299.0),
-                feels_like = DailyFeelsLike(300.0, 298.0, 299.0, 297.0),
-                pressure = 1013,
-                humidity = 50,
-                dew_point = 10.0,
-                wind_speed = 1.0,
-                wind_deg = 0,
-                wind_gust = null,
-                weather = weather,
-                clouds = 0,
-                pop = 0.0,
-                rain = null,
-                uvi = 5.0
-            )
-        )
-        return WeatherDetailResponse(
-            lat = 0.0,
-            lon = 0.0,
-            timezone = "UTC",
-            timezone_offset = 0,
-            current = current,
-            hourly = hourly,
-            daily = daily
-        )
     }
 }
